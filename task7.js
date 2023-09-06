@@ -1,12 +1,16 @@
 function userDetailes() {
-  var myFromGood = true;
-  var myFromGood1=((usernameInput.value.length < 10 && usernameInput.value != "" )&&(userEmailInput.value.substring(userEmailInput.value.length - 4) == ".com")&&(getAge(userAgeInput.value) > 18)&&( userPasswordInput.value == passwordValidationInput.value &&
-    passwordValidationInput.value != ""))
-    if(myFromGood1){
-        errorDiv.innerHTML = "";
-            alert("Welcome")
-        return myFromGood1
-    }
+  var myFromGood1 =
+    usernameInput.value.length < 10 &&
+    usernameInput.value != "" &&
+    userEmailInput.value.substring(userEmailInput.value.length - 4) == ".com" &&
+    getAge(userAgeInput.value) > 18 &&
+    userPasswordInput.value == passwordValidationInput.value &&
+    passwordValidationInput.value != "";
+  if (myFromGood1) {
+    errorDiv.innerHTML = "";
+    alert("Welcome");
+    return myFromGood1;
+  }
 
   var correctArr = [];
   var counter = 0;
@@ -16,7 +20,6 @@ function userDetailes() {
     correctArr[counter] = true;
   } else {
     correctArr[counter] = false;
-    myFromGood = false;
   }
   counter++;
   if (
@@ -25,14 +28,12 @@ function userDetailes() {
     correctArr[counter] = true;
   } else {
     correctArr[counter] = false;
-    myFromGood = false;
   }
   counter++;
   if (getAge(userAgeInput.value) > 18) {
     correctArr[counter] = true;
   } else {
     correctArr[counter] = false;
-    myFromGood = false;
   }
   counter++;
   if (
@@ -42,7 +43,6 @@ function userDetailes() {
     correctArr[counter + 1] = true;
   } else {
     correctArr[counter + 1] = false;
-    myFromGood = false;
   }
   for (var i = 0; i < correctArr.length; i++) {
     if (correctArr[i] == false) {
@@ -52,11 +52,11 @@ function userDetailes() {
       labelsArr[i].style = ``;
     }
   }
-//   if (myFromGood) {
-//     errorDiv.innerHTML = "";
-//     alert("Welcome")
-//   }
-  return myFromGood;
+  //   if (myFromGood) {
+  //     errorDiv.innerHTML = "";
+  //     alert("Welcome")
+  //   }
+  return myFromGood1;
 }
 function getAge(userDateRecevied) {
   var userDate = userDateRecevied;
@@ -72,4 +72,7 @@ function getAge(userDateRecevied) {
     age--;
   }
   return age;
+}
+function refreshSite() {
+  location.reload();
 }
