@@ -4,22 +4,52 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>task 8</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        background-color: gray;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        margin-top: 5vh;
+        height: 80vh;
+        width: 50vw;
+        justify-content: space-between;
+        border: 1px solid black;
+        background-color: white;
+
+      }
+      label{
+        width: 10%;
+        text-align: center;
+      }
+      input{
+        height: 15vh;
+      }
+
+    </style>
   </head>
   <body>
-    <form >
-        <label >First name</label>
-        <input type="text" id="workerFName" placeholder="first name">
-        <label >Last name</label>
-        <input type="text" id="workerLastName" placeholder="last name">
-        <label >Birth date</label>
-        <input type="date" id="workerBirthdate">
-        <label >Email</label>
-        <input type="email" id="workerEmail" placeholder="xxx@yyy.com/co.il">
-        <label >Phone</label>
-        <input type="tel" id="workerPhone"placeholder="023-45-678">
-        <label>Role</label>
-        <input type="text" id="workerRole">
-        <button type="submit"> sumbit</button>
+    <form onsubmit=" return sendForm()">
+      <label class="labels">First name</label>
+      <input type="text" id="workerFName" placeholder="first name" />
+      <label class="labels">Last name</label>
+      <input type="text" id="workerLName" placeholder="last name" />
+      <label class="labels">Birth date</label>
+      <input type="date" id="workerBirthdate" />
+      <label class="labels">Email</label>
+      <input type="email" id="workerEmail" placeholder="xxx@yyy.com/co.il" />
+      <label class="labels">Phone</label>
+      <input
+        type="tel"
+        id="workerPhone"
+        placeholder="02345678"
+        pattern="[0-9]{10}" />
+      <label class="labels">Role</label>
+      <input type="text" id="workerRole" />
+      <button type="submit">sumbit</button>
     </form>
     <script src="/task8/task8.js"></script>
   </body>
