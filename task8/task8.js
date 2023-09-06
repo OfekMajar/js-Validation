@@ -1,8 +1,8 @@
-function functionChecker() {
-  console.log(sendForm());
-}
+var TimerCountDown = 30;
+var usersTries = 0;
 function sendForm() {
   var lablesArray = document.getElementsByClassName("labels");
+  var errorArray = document.getElementsByClassName("inputErrorText");
   var workerNameTrue =
     workerFName.value[0] == workerFName.value.toUpperCase()[0] &&
     workerFName.value != "";
@@ -20,6 +20,15 @@ function sendForm() {
     workerPhone.value.length == 10 &&
     workerPhone.value != "";
   var workerRoleTrue = workerRole.value != "";
+  usersTries++;
+  console.log(usersTries);
+  if (usersTries >= 4) {
+    counterDownContainer.style = `display:flex`;
+    countDownIntervalID = setInterval(function () {
+      countDown();
+    }, 1000);
+    sumbitBtn.disabled = true;
+  }
   var counter = 0;
   var validationArray = [];
   if (
@@ -34,45 +43,65 @@ function sendForm() {
   }
   if (!workerNameTrue) {
     validationArray[counter] = false;
+    errorArray[
+      counter
+    ].innerHTML = `  <i style="color:red" class="fa-solid fa-circle-xmark"></i> The first letter must be capital `;
   } else {
     validationArray[counter] = true;
   }
   counter++;
   if (!workerLastNameTrue) {
     validationArray[counter] = false;
+    errorArray[
+      counter
+    ].innerHTML = `  <i style="color:red" class="fa-solid fa-circle-xmark"></i> The last name can't be longer than 20 letters `;
   } else {
     validationArray[counter] = true;
   }
   counter++;
   if (!workerBirthdayTrue) {
     validationArray[counter] = false;
+    errorArray[
+      counter
+    ].innerHTML = `  <i style="color:red" class="fa-solid fa-circle-xmark"></i> The worker must be between the age of 16 to 65 `;
   } else {
     validationArray[counter] = true;
   }
   counter++;
   if (!workerEmailTrue) {
     validationArray[counter] = false;
+    errorArray[
+      counter
+    ].innerHTML = `  <i style="color:red" class="fa-solid fa-circle-xmark"></i> The email must end with .com or .co.il`;
   } else {
     validationArray[counter] = true;
   }
   counter++;
   if (!workerPhoneTrue) {
     validationArray[counter] = false;
+    errorArray[
+      counter
+    ].innerHTML = `  <i style="color:red" class="fa-solid fa-circle-xmark"></i>The phone number must start with the number 0 and be at a maximum of 10 charaters`;
   } else {
     validationArray[counter] = true;
   }
   counter++;
   if (!workerRoleTrue) {
     validationArray[counter] = false;
+    errorArray[
+      counter
+    ].innerHTML = `  <i style="color:red" class="fa-solid fa-circle-xmark"></i> Must enter the workers role `;
   } else {
     validationArray[counter] = true;
   }
   for (var i = 0; i < validationArray.length; i++) {
     if (!validationArray[i]) {
       lablesArray[i].style = `border:1px solid red`;
-      console.log(lablesArray[i]);
     } else {
       lablesArray[i].style = ``;
+      errorArray[
+        i
+      ].innerHTML = `<i style="color:Green" class="fa-solid fa-circle-check"></i>`;
     }
   }
   return false;
@@ -92,4 +121,12 @@ function getAge(userDateRecevied) {
   }
   return age;
 }
-console.log(sendForm());
+function countDown() {
+  counterDownDiv.innerText = TimerCountDown;
+  TimerCountDown--;
+  if (TimerCountDown < 0) {
+    clearInterval(countDownIntervalID);
+    sumbitBtn.disabled = false;
+  }
+}
+// console.log(sendForm());
